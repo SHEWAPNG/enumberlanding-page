@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Payment Method</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background-color: #ffffff;
+      min-height: 100vh;
+      line-height: 1.6;
+    }
+
+    .container {
+      max-width: 400px;
+      margin: 0 auto;
+      padding: 16px;
+    }
+
+    .header {
+      display: flex;
+      align-items: center;
+      margin-bottom: 24px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid #e9ecef;
+    }
+
+    .back-btn {
+      background: none;
+      border: none;
+      font-size: 20px;
+      cursor: pointer;
+      margin-right: 12px;
+      color: #333;
+      padding: 8px;
+      border-radius: 50%;
+      transition: background-color 0.2s ease;
+    }
+
+    .back-btn:hover {
+      background-color: #f8f9fa;
+    }
+
+    .header-title {
+      font-size: 18px;
+      font-weight: 600;
+      color: #333;
+    }
+
+    .main-content {
+      margin-bottom: 32px;
+    }
+
+    .title {
+      font-size: 24px;
+      font-weight: 700;
+      color: #333;
+      margin-bottom: 6px;
+    }
+
+    .subtitle {
+      font-size: 14px;
+      color: #120f0f;
+      margin-bottom: 24px;
+    }
+
+    .payment-methods {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .payment-option {
+      display: flex;
+      align-items: center;
+      padding: 14px 16px;
+      border: 2px solid #e9ecef;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      background-color: white;
+      text-decoration: none;
+      color: inherit;
+      flex-wrap: wrap;
+    }
+
+    .payment-option:hover {
+      border-color: #007bff;
+      transform: translateY(-1px);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .payment-option:first-child {
+      border-color: #333;
+      background-color: #f8f9fa;
+    }
+
+    .payment-icon {
+      margin-right: 12px;
+      flex-shrink: 0;
+    }
+
+    .payment-icon svg {
+      width: 24px;
+      height: 24px;
+    }
+
+    .card-icon svg {
+      color: #6c757d;
+    }
+
+    .ivoucher-icon svg {
+      color: #ff6b35;
+    }
+
+    .eft-icon svg {
+      color: #666;
+    }
+
+    .flash-icon svg {
+      color: #84cc16;
+    }
+
+    .payment-details {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .payment-name {
+      font-size: 16px;
+      font-weight: 600;
+      color: #0a0606;
+      margin-bottom: 2px;
+    }
+
+    .payment-desc {
+      font-size: 12px;
+      color: #100b0b;
+      word-wrap: break-word;
+    }
+
+    .bottom-section {
+      padding-top: 16px;
+      border-top: 1px solid #e9ecef;
+    }
+
+    .buttons {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 16px;
+    }
+
+    .btn {
+      flex: 1 1 45%;
+      padding: 12px 20px;
+      border-radius: 50px;
+      font-size: 14px;
+      font-weight: 600;
+      border: none;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      text-decoration: none;
+      text-align: center;
+      display: inline-block;
+    }
+
+    .btn-cancel {
+      background-color: white;
+      color: #333;
+      border: 2px solid #e9ecef;
+    }
+
+    .btn-cancel:hover {
+      background-color: #f8f9fa;
+      border-color: #333;
+    }
+
+    .btn-continue {
+      background-color: #333;
+      color: white;
+    }
+
+    .btn-continue:hover {
+      background-color: #555;
+      transform: translateY(-1px);
+    }
+
+    .security-text {
+      text-align: center;
+      font-size: 12px;
+      color: #0a0404;
+    }
+
+    @media (max-width: 480px) {
+      .container {
+        padding: 12px;
+      }
+
+      .title {
+        font-size: 20px;
+      }
+
+      .subtitle {
+        font-size: 13px;
+      }
+
+      .payment-option {
+        padding: 12px 14px;
+      }
+
+      .payment-icon svg {
+        width: 20px;
+        height: 20px;
+      }
+
+      .payment-name {
+        font-size: 15px;
+      }
+
+      .payment-desc {
+        font-size: 11px;
+      }
+
+      .btn {
+        padding: 10px 16px;
+        font-size: 13px;
+        flex: 1 1 100%;
+      }
+    }
+
+    @media (max-width: 320px) {
+      .header-title {
+        font-size: 16px;
+      }
+
+      .title {
+        font-size: 18px;
+      }
+    }
+  </style>
+</head>
+<body>
+   <div class="container">
+        <div class="header">
+            <button class="back-btn">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                    <path d="M19 12H5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                    <path d="M12 19l-7-7 7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </button>
+            <h1 class="header-title">Payment Method</h1>
+        </div>
+
+        <div class="main-content">
+            <h2 class="title">Make Payment</h2>
+            <p class="subtitle">Select the payment method</p>
+
+            <div class="payment-methods">
+                <a href="#" class="payment-option">
+                    <div class="payment-icon card-icon">
+                        <svg width="29" height="28" viewBox="0 0 24 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M23.0834 2.35904V15.641C23.0834 16.2303 22.8792 16.7292 22.4709 17.1375C22.0625 17.5458 21.5637 17.75 20.9743 17.75H3.02573C2.43637 17.75 1.93752 17.5458 1.52919 17.1375C1.12085 16.7292 0.916687 16.2303 0.916687 15.641V2.35904C0.916687 1.76968 1.12085 1.27083 1.52919 0.8625C1.93752 0.454167 2.43637 0.25 3.02573 0.25H20.9743C21.5637 0.25 22.0625 0.454167 22.4709 0.8625C22.8792 1.27083 23.0834 1.76968 23.0834 2.35904ZM2.66669 4.80467H21.3334V2.35904C21.3334 2.26921 21.2959 2.18696 21.2211 2.11229C21.1464 2.03743 21.0641 2 20.9743 2H3.02573C2.9359 2 2.85365 2.03743 2.77898 2.11229C2.70412 2.18696 2.66669 2.26921 2.66669 2.35904V4.80467ZM2.66669 8.52867V15.641C2.66669 15.7308 2.70412 15.813 2.77898 15.8877C2.85365 15.9626 2.9359 16 3.02573 16H20.9743C21.0641 16 21.1464 15.9626 21.2211 15.8877C21.2959 15.813 21.3334 15.7308 21.3334 15.641V8.52867H2.66669Z" fill="currentColor"/>
+                        </svg>
+                    </div>
+                    <div class="payment-details">
+                        <div class="payment-name">Card</div>
+                        <div class="payment-desc">Jelly-o marzipan ice cream</div>
+                    </div>
+                </a>
+
+                <a href="#" class="payment-option">
+                    <div class="payment-icon ivoucher-icon">
+                        
+
+
+<svg width="100" height="100" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+  <rect width="100" height="100" rx="20" ry="20" fill="#FF5722"/>
+  <g fill="white">
+    <path d="M20 20 L20 80 L35 80 L35 45 L50 30 L50 20 Z"/>
+    <rect x="55" y="20" width="25" height="15" rx="2"/>
+  </g>
+</svg>
+
+
+
+                        
+                    </div>
+                    <div class="payment-details">
+                        <div class="payment-name">1Voucher</div>
+                        <div class="payment-desc">Jelly-o marzipan ice cream</div>
+                    </div>
+                </a>
+
+                <a href="#" class="payment-option">
+                    <div class="payment-icon eft-icon">
+                        <svg width="29" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+<mask id="mask0_88610_1908" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="28" height="28">
+<rect width="38" height="28" fill="#D9D9D9"/>
+</mask>
+<g mask="url(#mask0_88610_1908)">
+<path d="M21 23.3337V14.6531V15.757V4.66699V23.3337ZM9.66756 26.2614H8.45831C7.24984 26.2614 6.21851 25.8344 5.36431 24.9804C4.51031 24.1264 4.08331 23.0951 4.08331 21.8864V12.5531C4.08331 11.3446 4.51031 10.3134 5.36431 9.45937C6.21851 8.60517 7.24984 8.17808 8.45831 8.17808H10.4551V18.7679L14.6909 16.8295C15.0485 16.6485 15.4221 16.5924 15.8118 16.6612C16.2013 16.73 16.5337 16.902 16.809 17.1772L17.15 17.5362C17.3265 17.7052 17.4226 17.9142 17.4381 18.1633C17.4539 18.4124 17.3833 18.6311 17.2264 18.8195L12.0391 25.1957C11.7459 25.5427 11.3925 25.8072 10.9789 25.989C10.5653 26.1706 10.1282 26.2614 9.66756 26.2614ZM20.6409 25.0837H12.1289L13.5782 23.3337H20.6409C20.7457 23.3337 20.8318 23.3 20.8991 23.2327C20.9663 23.1655 21 23.0794 21 22.9746V5.02603C21 4.92123 20.9663 4.83519 20.8991 4.76791C20.8318 4.70063 20.7457 4.66699 20.6409 4.66699H10.8141C10.7095 4.66699 10.6235 4.70063 10.556 4.76791C10.4887 4.83519 10.4551 4.92123 10.4551 5.02603V8.17808H8.70506V5.02603C8.70506 4.44426 8.91117 3.94726 9.3234 3.53503C9.73542 3.12301 10.2323 2.91699 10.8141 2.91699H20.6409C21.2227 2.91699 21.7197 3.12301 22.1319 3.53503C22.544 3.94726 22.75 4.44426 22.75 5.02603V22.9746C22.75 23.5564 22.544 24.0534 22.1319 24.4656C21.7197 24.8776 21.2227 25.0837 20.6409 25.0837ZM15.7275 8.34637C16.0132 8.34637 16.2566 8.24584 16.4579 8.04478C16.6589 7.84353 16.7594 7.60009 16.7594 7.31445C16.7594 7.02881 16.6589 6.78537 16.4579 6.58412C16.2566 6.38306 16.0132 6.28253 15.7275 6.28253C15.4419 6.28253 15.1984 6.38306 14.9972 6.58412C14.7961 6.78537 14.6956 7.02881 14.6956 7.31445C14.6956 7.60009 14.7961 7.84353 14.9972 8.04478C15.1984 8.24584 15.4419 8.34637 15.7275 8.34637ZM9.65648 24.5114C9.8764 24.5114 10.0846 24.468 10.2812 24.3813C10.478 24.2946 10.6459 24.1645 10.7849 23.9911L15.1532 18.5818L10.206 20.8498C9.85462 21.0145 9.51667 20.9944 9.19215 20.7895C8.86742 20.5845 8.70506 20.2846 8.70506 19.8897V9.92808H8.45831C7.7344 9.92808 7.11587 10.1846 6.60273 10.6978C6.08979 11.2107 5.83331 11.8292 5.83331 12.5531V21.8864C5.83331 22.6224 6.08979 23.2439 6.60273 23.751C7.11587 24.2579 7.7344 24.5114 8.45831 24.5114H9.65648Z" fill="#6A6B70"/>
+</g>
+</svg>
+
+                    </div>
+                    <div class="payment-details">
+                        <div class="payment-name">EFT</div>
+                        <div class="payment-desc">Jelly-o marzipan ice cream</div>
+                    </div>
+                </a>
+
+                <a href="#" class="payment-option">
+                    <div class="payment-icon flash-icon">
+                       <svg width="32" height="28" viewBox="0 0 30 28" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<rect x="0.517273" width="28.2222" height="28" fill="url(#pattern0_88609_1882)"/>
+<defs>
+<pattern id="pattern0_88609_1882" patternContentUnits="objectBoundingBox" width="1" height="1">
+<use xlink:href="#image0_88609_1882" transform="scale(0.0166667 0.0172414)"/>
+</pattern>
+<image id="image0_88609_1882" width="152" height="58" preserveAspectRatio="none" xlink:href="data:image/png;base64,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"/>
+</defs>
+</svg>
+
+                    </div>
+                    <div class="payment-details">
+                        <div class="payment-name">Flash</div>
+                        <div class="payment-desc">Investigation to be done</div>
+                    </div>
+                </a>
+            </div>
+        </div>
+
+        <div class="bottom-section">
+            <div class="buttons">
+                <a href="#" class="btn btn-cancel">Cancel</a>
+                <a href="#" class="btn btn-continue">Continue</a>
+            </div>
+            <p class="security-text">Secured by Peach Payments</p>
+        </div>
+    </div>
+</body>
+</html>
