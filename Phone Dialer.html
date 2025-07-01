@@ -548,5 +548,64 @@ svg width="130" height="40" viewBox="0 0 30 19" fill="none" xmlns="http://www.w3
             </a>
         </div>
     </div>
+
+
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+    const dialedNumberDisplay = document.getElementById('dialedNumber');
+    const keypad = document.querySelector('.keypad');
+    const deleteBtn = document.getElementById('deleteBtn');
+    const callBtn = document.getElementById('callBtn');
+    const endCallBtn = document.getElementById('endCallBtn');
+    const dialerScreen = document.getElementById('dialerScreen');
+    const callingScreen = document.getElementById('callingScreen');
+    const currentCallingNumberDisplay = document.getElementById('currentCallingNumber');
+
+    let currentDialedNumber = '';
+
+    function updateDialedNumber() {
+        dialedNumberDisplay.textContent = currentDialedNumber;
+        
+    }
+
+
+    keypad.addEventListener('click', (event) => {
+        const target = event.target.closest('.key');
+        if (target) {
+            const number = target.dataset.number;
+            currentDialedNumber += number;
+            updateDialedNumber();
+        }
+    });
+
+    
+    deleteBtn.addEventListener('click', () => {
+        currentDialedNumber = currentDialedNumber.slice(0, -1);
+        updateDialedNumber();
+    });
+
+   
+    callBtn.addEventListener('click', () => {
+        if (currentDialedNumber.length > 0) {
+            dialerScreen.style.display = 'none';
+            callingScreen.style.display = 'flex'; 
+            currentCallingNumberDisplay.textContent = currentDialedNumber; 
+        } else {
+            alert('Please enter a number to call.');
+        }
+    });
+
+
+    endCallBtn.addEventListener('click', () => {
+        callingScreen.style.display = 'none'; 
+        dialerScreen.style.display = 'flex'; 
+        currentDialedNumber = ''; 
+        updateDialedNumber(); 
+    });
+
+    
+    updateDialedNumber();
+});
+    </script>
 </body>
 </html>
